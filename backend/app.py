@@ -1,24 +1,25 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from news_agent import NewsAgent  # Import the NewsAgent class
+from news_agent import NewsAgent
+import traceback
 
 # Initialize Flask app
 app = Flask(__name__)
 CORS(app)
 
-# Instantiate the NewsAgent from the news_agent.py
+# Instantiate NewsAgent
 newsAgent = NewsAgent()
 
-# API to handle user chat queries on a particular article
 @app.route('/')
 def home():
-    return 'Welcome to flask API'
+    return 'Welcome to Flask API'
+
 @app.route('/chat', methods=['GET'])
 def chat():
-    message = request.args.get('message')  # Get the user's query
-    article_url = request.args.get('articleUrl')  # Get the article URL
+    message = request.args.get('message')  # User's query
+    article_url = request.args.get('articleUrl')  # Article URL
 
-    # Check if both parameters are provided
+    # Validate parameters
     if not message:
         return jsonify({"error": "Message parameter is required"}), 400
     if not article_url:
@@ -27,17 +28,25 @@ def chat():
     try:
         # Fetch and process the article
         article_content = newsAgent.fetch_article(article_url)
-        article_file = newsAgent.save_article_to_temp(article_url.split("/")[-1], article_content)
-        newsAgent.process_article(article_file)
 
-        # Process query on the article using the chat method of NewsAgent
+        # Generate a unique filename based on URL
+        article_filename = article_url.split("/")[-1] + ".html"
+        article_file = newsAgent.save_article_to_temp(article_filename, article_content)
+
+        # Process article only if it's new
+        if not newsAgent.is_article_processed(article_file):
+            newsAgent.process_article(article_file)
+
+        # Process query on the article
         response = newsAgent.chat([], message)
-        return jsonify({"response": response}), 200  # Return the response as JSON
-    
+
+        return jsonify({"response": response}), 200
+
     except Exception as e:
-        # Log the error to the console for better debugging
-        print(f"Error in chat API: {str(e)}")  # Add logging here for debugging
+        print("Error in chat API:", str(e))
+        traceback.print_exc()
         return jsonify({"error": "Internal Server Error. Check server logs."}), 500
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
+

@@ -1,46 +1,199 @@
-.hero-section {
-  background: linear-gradient(120deg, #1976D2, #42A5F5);
-  color: #fff;
-  padding: 4rem 0;
+/* Light Theme with Beige Accents */
+body {
+  font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+  color: #333333;
+  background-color: #ffffff;
 }
 
+.home {
+  background-color: #ffffff !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Brown Text Color */
+.text-brown {
+  color: #66462f !important;
+}
+
+/* Button Styles */
+.btn-brown {
+  background-color: #66462f;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-brown:hover {
+  background-color: #543a27;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 70, 47, 0.3);
+}
+
+.btn-outline-brown {
+  color: #66462f;
+  border-color: #66462f;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-brown:hover {
+  background-color: #66462f;
+  color: #ffffff;
+}
+
+/* Navigation */
+.navbar-beige {
+  background-color: #d4c4a6 !important;
+  border-bottom: 1px solid #d9c9b4;
+}
+
+.navbar-brand {
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem !important;
+  margin: 0 0.2rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #543a27 !important;
+}
+
+/* Hero Section */
+.hero-section {
+  background-color: #e8d8c3 !important;
+  padding: 7rem 0;
+  position: relative;
+}
+
+.hero-section:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, rgba(102, 70, 47, 0) 0%, rgba(102, 70, 47, 0.7) 50%, rgba(102, 70, 47, 0) 100%);
+}
+
+.hero-section h1 {
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-section .lead {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Feature and Advantage Cards */
 .feature-card, .advantage-card {
-  background: #E3F2FD;
+  background-color: #ffffff !important;
   border: none;
   border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Add a specific class to force white background */
+.white-card {
+  background-color: #ffffff !important;
 }
 
 .feature-card:hover, .advantage-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff !important;
+}
+
+.card-body {
+  padding: 2rem;
+  background-color: #ffffff !important;
 }
 
 .card-title {
-  font-size: 1.25rem;
-  font-weight: bold;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 0.8rem;
+  color: #66462f !important;
+}
+
+.card-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background-color: #66462f;
 }
 
 .card-text {
-  font-size: 0.95rem;
-  color: #555;
+  color: #555555 !important;
+  line-height: 1.7;
 }
 
-footer {
-  background: #1565C0;
-  color: #fff;
+/* Footer */
+.footer-beige {
+  background-color: #e8d8c3 !important;
+  border-top: 1px solid #d9c9b4;
+  margin-top: auto;
+}
+
+footer p {
   font-size: 0.9rem;
 }
 
-.navbar {
-  padding: 1rem 0;
+/* Override any bootstrap or other default card styling */
+.card {
+  background-color: #ffffff !important;
 }
 
-.nav-link {
-  font-weight: 500;
-  font-size: 1rem;
+/* Elegant scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.nav-link:hover {
-  text-decoration: underline;
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #66462f;
+}
+
+/* Typography refinements */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+}
+
+.fw-light {
+  font-weight: 300 !important;
+}
+
+/* Add responsive refinements */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .hero-section {
+    padding: 5rem 0;
+  }
 }
